@@ -1,92 +1,92 @@
-# Leader Board Task
+# Unity Developer Test Task - Leaderboard Popup
 
+## Objective
 
+Your task is to create a simple leaderboard popup that reads a local JSON file in the Unity project from the Resources folder, parses the data, and displays it, along with player avatars that are downloaded as needed.
 
-## Getting started
+## Requirements
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- Use the [PopupManager](Assets/Scripts/SimplePopupManager/README.md) to open and close the popup.
+- Create a button that triggers the opening of the leaderboard popup.
+- The popup should be built using Unity's UI primitives and should fit well on all devices with a flexible scale.
+- The popup should contain a list view that shows the player's name, score, avatar, and player type.
+- Player type should be indicated by color and size (Diamond, Gold, Silver, Bronze, Default).
+- Load Player avatars after popup opened, during loading show "Loading" message on avatar place. Avatars caching will be considered a plus but not required.
+- The leaderboard popup should be closed when the close button on popup is clicked.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### User Experience Requirements
+The code should be user experience-friendly:
+ - Loading of the file and initialization of the popup should be done asynchronously to prevent blocking the main thread.
 
-## Add your files
+### Extra Requirements
+ - Think about how to access the `PopupManagerService`. Your solution should demonstrate good understanding of software architecture and design patterns. 
+ - Maintain consistent code style throughout your scripts.
+ - Write efficient and clean code that is easy to read and understand and not over-engineered.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+### Testing
+Please test your solution in different screen resolutions to ensure that the popup scales and displays correctly.
 
+### Documentation
+
+Please include a tiny `README.md` file with your submission, detailing the following:
+
+* How your solution works.
+* Any design choices or assumptions you made in your implementation.
+
+## Details
+
+The leaderboard JSON file located at [`Assets/Resources/Leaderboard.json`](Assets/Resources/Leaderboard.json) and have the following structure:
+```json
+    [
+      { 
+        "name": "Player 1", 
+        "score": 100, 
+        "avatar": "https://secure.gravatar.com/avatar/89f62265519c76c020aa0611b1423e28?s=80&d=identicon", 
+        "type": "Diamond" 
+      }
+    ]
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/sophun-test-tasks/unity-developer/leader-board-task.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
+### JSON Protocol
 
-- [ ] [Set up project integrations](https://gitlab.com/sophun-test-tasks/unity-developer/leader-board-task/-/settings/integrations)
+- `name`: The name of the player.
+- `score`: The score of the player.
+- `avatar`: The URL of the player's avatar. This should be downloaded and displayed as an image.
+- `type`: The type of the player (Diamond, Gold, Silver, Bronze, Default). This should affect the color and size of the leaderboard item.
 
-## Collaborate with your team
+## Code Changes
+You are allowed to make changes to the `PopupManager` if necessary. However, any changes should be justified and improve the functionality or design of the system.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## Submission
+Please submit your project as link and access to a git repository containing your project. Include all code, assets, and any other materials necessary to run the project.
+If git repository is private, please inform us about it and we provide our emails to grant access.
+I case git repository submission is not possible, please send us a .zip file with the project.
 
-## Test and Deploy
+## Evaluation Criteria
 
-Use the built-in continuous integration in GitLab.
+Your submission will be evaluated on the following criteria:
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- Successful implementation of required features.
+- Code quality and style.
+- User experience.
+- Implementation of extras.
+- Documentation.
 
-***
+## Questions
 
-# Editing this README
+If you have any questions about the task, please don't hesitate to ask.
+___
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Remember, this task is meant to test your understanding of Unity, C#, software architecture, and user experience considerations.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+**Any** information and tools available to you can be used to complete the task.
 
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+### Good luck!
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+© 2023 Sophun Games LTD. All rights reserved.
+
+All rights to the code and documentation in this repository belong to Sophun Games LTD. Any copying, distribution, or use without the explicit consent of Sophun Games LTD is prohibited. This code can only be used for the purpose of completing the task provided by Sophun Games LTD, and for no other purpose.
+
+Unauthorized use of this code or documentation could result in legal action taken by Sophun Games LTD.
