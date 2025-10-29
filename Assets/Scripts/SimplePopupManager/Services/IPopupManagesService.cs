@@ -3,10 +3,10 @@
 //Any use, reproduction, distribution, or release of this code or documentation without the express permission
 //of Sophun Games LTD is strictly prohibited and could be subject to legal action.
 
-using System.Threading.Tasks;
-
 namespace SimplePopupManager
 {
+    using UnityEngine;
+
     public interface IPopupManagerService
     {
         /// <summary>
@@ -14,8 +14,9 @@ namespace SimplePopupManager
         ///     If the popup is already loaded, it will log an error and return.
         /// </summary>
         /// <param name="name">The name of the popup to open.</param>
+        /// <param name="parent">The parent that has <see cref="UnityEngine.Canvas"/> on top of its hierarchy</param>
         /// <param name="param">The parameters to initialize the popup with.</param>
-        void OpenPopup(string name, object param);
+        void OpenPopup(string name, Transform parent, object param);
 
         /// <summary>
         ///     Closes a popup by its name.

@@ -14,7 +14,7 @@ namespace SimplePopupManager
     /// <summary>
     ///     Manages popups, providing functionality for opening, closing, and loading popups.
     /// </summary>
-    public class PopupManagerServiceService : IPopupManagerService
+    public class PopupManagerService : IPopupManagerService
     {
         private readonly Dictionary<string, GameObject> m_Popups = new();
 
@@ -23,8 +23,9 @@ namespace SimplePopupManager
         ///     If the popup is already loaded, it will log an error and return.
         /// </summary>
         /// <param name="name">The name of the popup to open.</param>
+        /// <param name="parent">The parent that has <see cref="UnityEngine.Canvas"/> on top of its hierarchy</param>
         /// <param name="param">The parameters to initialize the popup with.</param>
-        public async void OpenPopup(string name, object param)
+        public async void OpenPopup(string name, Transform parent, object param)
         {
             if (m_Popups.ContainsKey(name))
             {
@@ -32,7 +33,7 @@ namespace SimplePopupManager
                 return;
             }
 
-            await LoadPopup(name, param);
+            await LoadPopup(name, parent, param);
         }
 
         /// <summary>
@@ -56,10 +57,11 @@ namespace SimplePopupManager
         ///     If the popup doesn't have any IPopupInitialization components, it will log an error and release its instance.
         /// </summary>
         /// <param name="name">The name of the popup to load.</param>
+        /// <param name="parent">The parent that has <see cref="UnityEngine.Canvas"/> on top of its hierarchy</param>
         /// <param name="param">The parameters to initialize the popup with.</param>
-        private async Task LoadPopup(string name, object param)
+        private async Task LoadPopup(string name, Transform parent, object param)
         {
-            AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(name);
+            AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(name, parent);
             await handle.Task;
 
             if (handle.Status == AsyncOperationStatus.Succeeded)
