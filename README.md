@@ -1,4 +1,4 @@
-# README.md
+# Test Task - Leaderboard Example
 
 ## How It Works
 
