@@ -10,7 +10,7 @@ I've created a simple mock scene that serves as a starting point for testing the
 - **Popup System**: Created and designed a popup prefab according to my vision of the task, hooked it up to an addressable group. Wrote `BasePopup` that covers basic common functionality, then implemented `LeaderboardPopup` and `LeaderboardEntryView` to populate a scrollable list of entries with specific designs according to players' positions (diamond, gold, silver, bronze, default).
 
 
-- **Data & Services**: Wrote a `LeaderboardEntry` data model and `LeaderboardService` for retrieving and parsing JSON from a local file. It's written in a way that would make it easy to hypothetically replace part of its functionality for getting JSON with a WebRequest or something.
+- **Data & Services**: Wrote a `LeaderboardEntry` data model and `LeaderboardService` for retrieving and parsing JSON from a local file. I used `Newtonsoft.Json` to save time on Leaderboard.json's `"type"` to my enum conversion. It's written in a way that would make it easy to hypothetically replace part of its functionality for getting JSON with a WebRequest or something.
 
 
 - **Avatar Handling**: Created `AvatarProviderService` with caching functionality that generates a hash for file names based on a link and checks if the file is already cached.
@@ -20,9 +20,9 @@ I've created a simple mock scene that serves as a starting point for testing the
 
 ## Design Choices & Assumptions
 
-- I had to update `SimplePopupManager` to use my persistent canvas. The solution is not ideal, but it was done for speed.
+- I had to update `SimplePopupManager` to use my persistent canvas. The solution is not ideal, but it was chosen for speed.
 
-- I thought about adding a loading icon for when the JSON is parsing (assuming a hypothetical WebRequest) and about having a fallback image for when the avatar fails to load, but I also wanted to avoid overengineering and get it done quicker.
+- I thought about adding a loading icon for when the JSON is parsing (assuming a hypothetical WebRequest) and about having a fallback image for when an avatar fails to load, but I also wanted to avoid overengineering and get it done quicker.
 
 - I didn't want to change `PopupManagerService` a lot, but if I had more time and reason, I would actually rewrite it, at least because it breaks if there's a duplicate `OpenPopup` call in quick succession. It happens because the key is added asynchronously after loading an addressable.
 
